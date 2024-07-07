@@ -4,8 +4,10 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] protected int health = 10;
     [SerializeField] protected GameObject player;
-    [SerializeField] private Animator ani;
+    [SerializeField] protected Animator ani;
     [SerializeField] protected float velocity = 2f;
+
+    [SerializeField] protected float velocityAnimation = 1f;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public abstract class BaseEnemy : MonoBehaviour
         Quaternion rotacion = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotacion, 2);
 
+        ani.speed = velocityAnimation;
         ani.SetBool("Walk", true);
         transform.Translate(Vector3.forward * velocity * Time.deltaTime);
     }

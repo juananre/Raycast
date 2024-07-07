@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class NormalEnemy : BaseEnemy, IEnemy
 {
-    [SerializeField] public static new int health = 2;
-    [SerializeField] public static new float velocity = 5;
+    [SerializeField] protected static new int health = 2;
+    [SerializeField] protected static new float velocity = 5;
+    [SerializeField] protected static new float velocityAnimation = 2f;
 
     public void TakeDamage(int amount)
     {
