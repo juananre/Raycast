@@ -64,7 +64,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.555, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 898764872651452524}
   m_Father: {fileID: 998481359300187525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8697522633085059346
@@ -218,7 +219,6 @@ Transform:
   m_Children:
   - {fileID: 5392808338222932511}
   - {fileID: 1841718798290629792}
-  - {fileID: 898764872651452524}
   m_Father: {fileID: 5490954680084087580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5259378020787073082
@@ -436,7 +436,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 998481359300187525}
+    m_TransformParent: {fileID: 5392808338222932511}
     m_Modifications:
     - target: {fileID: 100000, guid: 8ec27b9fa858cc6428814a59ea18bd18, type: 3}
       propertyPath: m_Name
@@ -448,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8ec27b9fa858cc6428814a59ea18bd18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.248
+      value: -0.30699998
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8ec27b9fa858cc6428814a59ea18bd18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -494,6 +494,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1409991711187411234}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 8ec27b9fa858cc6428814a59ea18bd18,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9135184575567996982}
   m_SourcePrefab: {fileID: 100100000, guid: 8ec27b9fa858cc6428814a59ea18bd18, type: 3}
 --- !u!1 &898764872651287628 stripped
 GameObject:
@@ -605,6 +609,19 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &9135184575567996982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898764872651287628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2218abdc241cd894b848a78a761f7bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootPosition: {fileID: 7166425479179253836}
 --- !u!4 &898764872651452524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8ec27b9fa858cc6428814a59ea18bd18,
