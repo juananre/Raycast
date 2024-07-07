@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour, IEnemy
+public abstract class BaseEnemy : MonoBehaviour
 {
-    protected int health = 10;
-    [SerializeField] private GameObject player;
+    [SerializeField] protected int health = 10;
+    [SerializeField] protected GameObject player;
     [SerializeField] private Animator ani;
     [SerializeField] protected float velocity = 2f;
 
@@ -20,26 +20,7 @@ public class BaseEnemy : MonoBehaviour, IEnemy
         }
     }
 
-    void Update()
-    {
-        if (player != null)
-        {
-            WalkNPC();
-        }
-    }
-
-    public void TakeDamage(int amount)
-    {
-        health -= amount;
-        Debug.Log("Enemigo recibió daño, salud restante: " + health);
-
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    void WalkNPC()
+    protected void WalkNPC()
     {
         Vector3 lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
@@ -49,7 +30,8 @@ public class BaseEnemy : MonoBehaviour, IEnemy
         ani.SetBool("Walk", true);
         transform.Translate(Vector3.forward * velocity * Time.deltaTime);
     }
-    protected virtual void Die()
+
+    protected void Die()
     {
         Debug.Log("Enemigo ha muerto.");
         Destroy(gameObject);
