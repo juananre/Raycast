@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEnemy
+public class BaseEnemy : MonoBehaviour, IEnemy
 {
-    [SerializeField] private int health = 10;
+    protected int health = 10;
     [SerializeField] private GameObject player;
     [SerializeField] private Animator ani;
-    [SerializeField] private float velocity = 2f;
+    [SerializeField] protected float velocity = 2f;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -48,5 +48,10 @@ public class Enemy : MonoBehaviour, IEnemy
 
         ani.SetBool("Walk", true);
         transform.Translate(Vector3.forward * velocity * Time.deltaTime);
+    }
+    protected virtual void Die()
+    {
+        Debug.Log("Enemigo ha muerto.");
+        Destroy(gameObject);
     }
 }
