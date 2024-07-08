@@ -25,7 +25,6 @@ public class GeneratorEnemy : MonoBehaviour
 
         StartCoroutine(SpawnEnemies());
     }
-
     private IEnumerator SpawnEnemies()
     {
         while (true)
@@ -34,7 +33,6 @@ public class GeneratorEnemy : MonoBehaviour
             SpawnEnemy();
         }
     }
-
     private void SpawnEnemy()
     {
         int spawnIndex = Random.Range(0, spawnPoints.Length);

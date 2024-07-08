@@ -22,7 +22,6 @@ public class HevyEnemy : BaseEnemy, IEnemy
     {
         return typeEnemy;
     }
-
     public override void TakeDamage(int amount)
     {
         health -= amount;

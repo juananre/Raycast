@@ -8,13 +8,12 @@ public class PlayerCamController : MonoBehaviour
     [SerializeField] float velocity = 100f;
     float rotatioinX = 0f;
     [SerializeField] Transform Player;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     // Update is called once per frame
     void Update()
     {

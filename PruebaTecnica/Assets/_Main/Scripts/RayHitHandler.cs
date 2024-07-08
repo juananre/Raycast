@@ -12,7 +12,7 @@ public class RayHitHandler : MonoBehaviour, IRayHitHandler
         }
         else
         {
-            Debug.Log("Raycast hit an object without IEnemy component: " + hit.transform.name);
+            Debug.Log("Raycast golpeó un objeto sin el componente IEnemy: " + hit.transform.name);
         }
     }
 }

@@ -5,7 +5,7 @@ public class Blast_Controller : MonoBehaviour
 {
     [SerializeField] private Transform shootPosition;
     [SerializeField] private float laserRange = 100f, laserDuration = 0.08f;
-
+    [SerializeField] AudioSource audio;
     private Camera cam;
     private LineRenderer lineRenderer;
     private IRayHitHandler rayHitHandler;
@@ -24,7 +24,7 @@ public class Blast_Controller : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))   //llama al Raycast desde el origen dela camara
         {
             RaycastHit hit;
             Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
@@ -47,8 +47,9 @@ public class Blast_Controller : MonoBehaviour
         }
     }
 
-    IEnumerator RenderLine()
+    IEnumerator RenderLine()//crea la ilusion de salir de arma
     {
+        audio.Play();
         lineRenderer.enabled = true;
         yield return new WaitForSeconds(laserDuration);
         lineRenderer.enabled = false;

@@ -1,12 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IEnemy
 {
     [SerializeField] private int health = 10;
     [SerializeField] TMP_Text VidaActual;
-
     public void Update()
     {
         VidaActual.text = health.ToString("0");
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IEnemy
         if (health <= 0)
         {
             Debug.Log("Jugador ha muerto.");
-            // lógica para cuando el jugador muere
+            SceneManager.LoadScene(0);
         }
     }
 }
