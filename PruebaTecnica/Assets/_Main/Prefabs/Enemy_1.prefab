@@ -1628,7 +1628,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8101086947412759953}
@@ -1716,13 +1716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055aaa319c4565e41a2178c2851a6d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
   player: {fileID: 0}
   ani: {fileID: 0}
-  MeshColor: {fileID: 0}
-  velocity: 0.7
-  velocityAnimation: 2
-  TypeEnemy: {r: 0, g: 0, b: 0, a: 0}
+  meshColor: {fileID: 0}
+  health: 14
+  velocity: 2
+  velocityAnimation: 5.8
+  typeEnemy: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &8108802814775237842
 GameObject:
   m_ObjectHideFlags: 0

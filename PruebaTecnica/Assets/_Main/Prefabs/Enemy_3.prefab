@@ -889,7 +889,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.23, y: -0.063827515, z: 21.093853}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5239814074875919139}
@@ -980,9 +980,9 @@ MonoBehaviour:
   player: {fileID: 0}
   ani: {fileID: 0}
   meshColor: {fileID: 0}
-  health: 10
-  velocity: 5
-  velocityAnimation: 2
+  health: 25
+  velocity: 2
+  velocityAnimation: 5.8
   typeEnemy: {r: 1, g: 0, b: 0.7644234, a: 0}
 --- !u!1 &5977628895422508483
 GameObject:
