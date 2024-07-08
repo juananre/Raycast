@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class NormalEnemy : BaseEnemy, IEnemy
+public class StrongeEnemy : BaseEnemy, IEnemy
 {
-    [SerializeField] private new int health = 2;
-    [SerializeField] private new float velocity = 5;
+    [SerializeField] private new int health = 5;
+    [SerializeField] private new float velocity = 0.7f;
     [SerializeField] private new float velocityAnimation = 2f;
     [SerializeField] private Color typeEnemy;
 

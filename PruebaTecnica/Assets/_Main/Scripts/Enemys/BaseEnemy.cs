@@ -1,24 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] protected int health = 10;
+    private protected int health = 1;
+    private protected float velocity = 0.7f;
+    private protected float velocityAnimation = 2f;
     [SerializeField] protected GameObject player;
     [SerializeField] protected Animator ani;
-    [SerializeField] protected float velocity = 2f;
+    [SerializeField] protected Renderer meshColor;
 
-    [SerializeField] protected float velocityAnimation = 1f;
+    
 
-    void Start()
+    protected virtual void Start()
     {
         if (ani == null)
         {
             ani = GetComponent<Animator>();
+            if (ani == null)
+            {
+                Debug.LogError("Animator no encontrado.");
+            }
         }
 
         if (player == null)
         {
             player = GameObject.FindWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogError("Player no encontrado.");
+            }
+        }
+
+        if (meshColor == null)
+        {
+            meshColor = GetComponentInChildren<Renderer>();
+            if (meshColor == null)
+            {
+                Debug.LogError("Renderer no encontrado.");
+            }
+        }
+
+        StartCoroutine(ColorBody());
+    }
+
+    protected virtual void Update()
+    {
+        if (player != null)
+        {
+            WalkNPC();
         }
     }
 
@@ -39,4 +70,18 @@ public abstract class BaseEnemy : MonoBehaviour
         Debug.Log("Enemigo ha muerto.");
         Destroy(gameObject);
     }
+
+    protected IEnumerator ColorBody()
+    {
+        if (meshColor == null)
+        {
+            meshColor = GetComponentInChildren<Renderer>();
+        }
+
+        meshColor.material.color = GetColor();
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    protected abstract Color GetColor();
 }
