@@ -17,7 +17,12 @@ public class StrongeEnemy : BaseEnemy, IEnemy
         base.Update();
     }
 
-    public void TakeDamage(int amount)
+    protected override Color GetColor()
+    {
+        return typeEnemy;
+    }
+
+    public override void TakeDamage(int amount)
     {
         health -= amount;
         Debug.Log("Enemigo recibió daño, salud restante: " + health);
@@ -26,10 +31,5 @@ public class StrongeEnemy : BaseEnemy, IEnemy
         {
             Die();
         }
-    }
-
-    protected override Color GetColor()
-    {
-        return typeEnemy;
     }
 }

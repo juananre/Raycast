@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator_Enemy : MonoBehaviour
+public class GeneratorEnemy : MonoBehaviour
 {
     [Header("Points")]
     [SerializeField] private Transform[] spawnPoints;
@@ -13,11 +12,14 @@ public class Generator_Enemy : MonoBehaviour
     [Header("Spawn Time")]
     [SerializeField] private float spawnTime = 5f;
 
+    [Header("Observer")]
+    [SerializeField] private ScoreManager scoreManager;
+
     private void Start()
     {
-        if (spawnPoints.Length == 0 || enemies.Length == 0)
+        if (spawnPoints.Length == 0 || enemies.Length == 0 || scoreManager == null)
         {
-            Debug.LogError("Puntos de generación o enemigos no asignados.");
+            Debug.LogError("Puntos de generación, enemigos o ScoreManager no asignados.");
             return;
         }
 
@@ -41,6 +43,11 @@ public class Generator_Enemy : MonoBehaviour
         Transform spawnPoint = spawnPoints[spawnIndex];
         GameObject enemyPrefab = enemies[enemyIndex];
 
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        ISubject enemySubject = enemy.GetComponent<ISubject>();
+        if (enemySubject != null)
+        {
+            enemySubject.RegisterObserver(scoreManager);
+        }
     }
 }

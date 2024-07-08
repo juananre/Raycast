@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
-public abstract class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour, ISubject
 {
-    private protected int health = 1;
-    private protected float velocity = 0.7f;
-    private protected float velocityAnimation = 2f;
+    private List<IObserver> observers = new List<IObserver>();
+
+    protected int health = 1;
     [SerializeField] protected GameObject player;
     [SerializeField] protected Animator ani;
     [SerializeField] protected Renderer meshColor;
-
-    
+    protected float velocity = 0.7f;
+    protected float velocityAnimation = 2f;
 
     protected virtual void Start()
     {
@@ -60,28 +60,75 @@ public abstract class BaseEnemy : MonoBehaviour
         Quaternion rotacion = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotacion, 2);
 
-        ani.speed = velocityAnimation;
-        ani.SetBool("Walk", true);
+        if (ani != null)
+        {
+            ani.speed = velocityAnimation;
+            ani.SetBool("Walk", true);
+        }
         transform.Translate(Vector3.forward * velocity * Time.deltaTime);
     }
 
     protected void Die()
     {
+        NotifyObservers();
+        Debug.Log("Enemigo ha muerto.");
+        Destroy(gameObject);
+    }
+
+    protected void Attack()
+    {
+        
         Debug.Log("Enemigo ha muerto.");
         Destroy(gameObject);
     }
 
     protected IEnumerator ColorBody()
     {
-        if (meshColor == null)
+        if (meshColor != null)
         {
-            meshColor = GetComponentInChildren<Renderer>();
+            meshColor.material.color = GetColor();
         }
-
-        meshColor.material.color = GetColor();
-
         yield return new WaitForSeconds(0.5f);
     }
 
     protected abstract Color GetColor();
+
+    public abstract void TakeDamage(int amount);
+
+    public void RegisterObserver(IObserver observer)
+    {
+        if (!observers.Contains(observer))
+        {
+            observers.Add(observer);
+        }
+    }
+
+    public void UnregisterObserver(IObserver observer)
+    {
+        if (observers.Contains(observer))
+        {
+            observers.Remove(observer);
+        }
+    }
+
+    public void NotifyObservers()
+    {
+        foreach (var observer in observers)
+        {
+            observer.OnEnemyDeath();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player playerComponent = collision.gameObject.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.TakeDamage(1);
+                Attack();
+            }
+        }
+    }
 }
