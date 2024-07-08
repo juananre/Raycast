@@ -1,4 +1,4 @@
-# Raycast
+# Pueba Tecnica Raycast
 
 ## Pasos Previos
 Para poder resolver la prueba técnica, lo primero que hice fue establecer un diagrama de flujo de la aplicación. En este diagrama, marqué los eventos y acciones que ocurrirían en el juego. Utilicé Figma para crear este diagrama, lo que me permitió visualizar la lógica del juego y las interacciones entre los diferentes componentes.
